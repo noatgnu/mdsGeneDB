@@ -1,0 +1,35 @@
+<div class="card mt-2" [id]="_data['Mutation']+'id'">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <app-bar-chart [data]="_data"></app-bar-chart>
+      </div>
+      <div class="col-6">
+        <div class="d-flex">
+          <div class="mr-auto p-2">
+            <p class="card-text text-danger"><b>LRRK2 kinase pathway activation (pRAB10/RAB10)</b></p>
+          </div>
+        </div>
+
+        <p class="card-text">
+          Activation compared to wildtype (mean, StDev): <b>{{_data["MEAN pRab10-Thr73/WT"]}}</b> , <b>{{_data["STDev"]}}</b>
+        </p>
+        <p class="card-text">
+          Interpretation of 'in vitro' data: <b>{{_data["Interpretation (in vitro)"]}}</b>
+        </p>
+        <p class="card-text">
+          Corresponding 'in vivo' data availability: <b>{{_data["Corresponding in vivo data"]}}</b>
+        </p>
+        <p class="card-text" *ngIf="_data['Corresponding in vivo data'] === 'yes'">
+          Interpretation of 'in vivo' data: <b>{{_data["Interpretation (in vivo)"]}}</b>
+        </p>
+        <p class="card-text" *ngIf="_data['Corresponding in vivo data'] === 'yes'">
+          References for in vivo data: <b>{{_data['Reference for in vivo data']}}</b>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-danger" (click)="close()" >Close</button>
+  </div>
+</div>
