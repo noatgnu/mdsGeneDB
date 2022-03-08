@@ -9,7 +9,6 @@ export class DataViewerComponent implements OnInit {
   _data: any = {}
   @Input() set data(value: any) {
     this._data = value
-    console.log(this._data)
   }
   @Output() closeEntry: EventEmitter<string> = new EventEmitter<string>()
   close() {
