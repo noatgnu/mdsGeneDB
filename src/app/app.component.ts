@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {WebServiceService} from "../services/web-service.service";
 import {DataService} from "../services/data.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,12 @@ import {DataService} from "../services/data.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public web: WebServiceService, public dataService: DataService) {
+  form: FormGroup = this.fb.group({
+    mutations: [],
+    invitro: "",
+  })
+
+  constructor(public web: WebServiceService, public dataService: DataService, private fb: FormBuilder) {
     this.web.getData()
   }
 
@@ -18,5 +24,28 @@ export class AppComponent {
     const ind = this.dataService.select.indexOf(event)
     this.dataService.select.splice(ind, 1)
     this.dataService.selected.splice(ind, 1)
+  }
+
+  selectMutants() {
+    const selected: string[] = []
+    for (const i of this.form.value["mutations"]) {
+      if (!this.dataService.select.includes(i)) {
+        selected.push(i)
+      }
+    }
+    console.log(selected)
+    const results = this.web.data.where(row => selected.includes(row["Mutation"])).bake()
+    for (const r of results) {
+      if (this.form.value["invitro"] !== "") {
+        if (r["Interpretation (in vitro)"] === this.form.value["invitro"]) {
+          this.dataService.selected.push(r)
+          this.dataService.select.push(r["Mutation"])
+        }
+      } else {
+        this.dataService.selected.push(r)
+        this.dataService.select.push(r["Mutation"])
+      }
+
+    }
   }
 }

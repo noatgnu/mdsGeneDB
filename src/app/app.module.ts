@@ -10,6 +10,7 @@ import { DataViewerComponent } from './data-viewer/data-viewer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuickSearchComponent } from './quick-search/quick-search.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DataBodyComponent } from './data-body/data-body.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
@@ -17,7 +18,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     AppComponent,
     BarChartComponent,
     DataViewerComponent,
-    QuickSearchComponent
+    QuickSearchComponent,
+    DataBodyComponent
   ],
   imports: [
     BrowserModule,

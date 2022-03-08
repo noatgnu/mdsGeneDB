@@ -9,6 +9,7 @@ import {DataService} from "./data.service";
 export class WebServiceService {
   data: IDataFrame = new DataFrame()
   mutations: string[] = []
+  invitro: string[] = []
   constructor(private http: HttpClient, private dataService: DataService) { }
 
   getData() {
@@ -17,6 +18,9 @@ export class WebServiceService {
         this.data = fromCSV(<string>data)
         this.dataService.selected = this.data.where(row => row["Mutation"] === "p.Ala211Val").bake().toArray()
         this.mutations = this.data.getSeries("Mutation").bake().toArray()
+        this.invitro = this.data.getSeries("Interpretation (in vitro)").bake().distinct().toArray()
+        console.log(this.invitro)
+
         console.log(this.mutations)
       }
     })

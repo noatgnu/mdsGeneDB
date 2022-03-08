@@ -1,19 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><b>MDS GENE DB</b></a>
+    <a class="navbar-brand" href="#"><b>MDS Gene DB</b></a>
     <div class="d-flex">
       <app-quick-search></app-quick-search>
     </div>
   </div>
-
 </nav>
 
 <div *ngIf="web.data.count()>0">
   <form></form>
 </div>
 
-<div class="container">
-  <ng-container *ngFor="let s of dataService.selected">
-    <app-data-viewer [data]="s" (closeEntry)="removeEntry($event)"></app-data-viewer>
-  </ng-container>
+<div class="container-fluid" *ngIf="web.mutations">
+  <div class="row">
+    <div class="col-2">
+      <div class="card mt-2 float">
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="form-group mt-2">
+              <label for="mutationsSelect">Select Mutations</label>
+              <select class="form-control" id="mutationsSelect" multiple formControlName="mutations">
+                <option *ngFor="let m of web.mutations" value="{{m}}">
+                  {{m}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mt-2">
+              <label for="filterByInvitro">Filter By 'in vitro' interpretation</label>
+              <select class="form-control" id="filterByInvitro" formControlName="invitro">
+                <option value="">No Filter</option>
+                <option *ngFor="let i of web.invitro" value="{{i}}">{{i}}</option>
+              </select>
+            </div>
+            <button class="btn btn-primary mt-2" (click)="selectMutants()">Add to view</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <form>
+        <div class="row">
+
+        </div>
+      </form>
+      <ng-container *ngFor="let s of dataService.selected">
+        <app-data-viewer [data]="s" (closeEntry)="removeEntry($event)"></app-data-viewer>
+      </ng-container>
+    </div>
+  </div>
+
 </div>
