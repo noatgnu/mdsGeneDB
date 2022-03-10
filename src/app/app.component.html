@@ -16,6 +16,15 @@
     <div class="col-2">
       <div class="card mt-2 float">
         <div class="card-body">
+          <form [formGroup]="form2">
+            <div class="form-group mt-2">
+              <label for="filterByInvitro">Filter By 'in vitro' interpretation</label>
+              <select class="form-control" id="filterByInvitro" formControlName="invitro">
+                <option value="">No Filter</option>
+                <option *ngFor="let i of web.invitro" value="{{i}}">{{i}}</option>
+              </select>
+            </div>
+          </form>
           <form [formGroup]="form">
             <div class="form-group mt-2">
               <label for="mutationsSelect">Select Mutations</label>
@@ -23,13 +32,6 @@
                 <option *ngFor="let m of web.mutations" value="{{m}}">
                   {{m}}
                 </option>
-              </select>
-            </div>
-            <div class="form-group mt-2">
-              <label for="filterByInvitro">Filter By 'in vitro' interpretation</label>
-              <select class="form-control" id="filterByInvitro" formControlName="invitro">
-                <option value="">No Filter</option>
-                <option *ngFor="let i of web.invitro" value="{{i}}">{{i}}</option>
               </select>
             </div>
             <button class="btn btn-primary mt-2" (click)="selectMutants()">Add to view</button>
