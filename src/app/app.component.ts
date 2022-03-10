@@ -41,8 +41,10 @@ export class AppComponent {
   selectMutants() {
     const results = this.web.data.where(row => this.form.value["mutations"].includes(row["Mutation"])).bake()
     for (const r of results) {
-      this.dataService.select.push(r["Mutation"])
-      this.dataService.selected.push(r)
+      if (!this.dataService.select.includes(r["Mutation"])) {
+        this.dataService.select.push(r["Mutation"])
+        this.dataService.selected.push(r)
+      }
     }
   }
 }
