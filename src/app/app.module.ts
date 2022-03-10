@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuickSearchComponent } from './quick-search/quick-search.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DataBodyComponent } from './data-body/data-body.component';
+import { Lrrk2SequenceComponent } from './lrrk2-sequence/lrrk2-sequence.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
@@ -19,7 +20,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     BarChartComponent,
     DataViewerComponent,
     QuickSearchComponent,
-    DataBodyComponent
+    DataBodyComponent,
+    Lrrk2SequenceComponent
   ],
   imports: [
     BrowserModule,

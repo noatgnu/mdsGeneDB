@@ -1,3 +1,6 @@
 <ng-container *ngIf="_data">
-  <plotly-plot [data]="graphData" [layout]="graphLayout" [updateOnDataChange]="true" [updateOnLayoutChange]="true"></plotly-plot>
+  <div class="row">
+    <plotly-plot [data]="[wtGraphData, mutantGraphData]" [layout]="graphLayout" [updateOnDataChange]="true" [updateOnLayoutChange]="true"></plotly-plot>
+  </div>
+
 </ng-container>

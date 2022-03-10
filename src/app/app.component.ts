@@ -15,7 +15,9 @@ export class AppComponent {
   })
 
   constructor(public web: WebServiceService, public dataService: DataService, private fb: FormBuilder) {
+    this.web.getWT()
     this.web.getData()
+    this.web.getLRRK2()
   }
 
   title = 'MDS Gene Database';
@@ -33,7 +35,7 @@ export class AppComponent {
         selected.push(i)
       }
     }
-    console.log(selected)
+
     const results = this.web.data.where(row => selected.includes(row["Mutation"])).bake()
     for (const r of results) {
       if (this.form.value["invitro"] !== "") {
