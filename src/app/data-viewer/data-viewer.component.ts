@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class DataViewerComponent implements OnInit {
   _data: any = {}
+  averageTrigger: boolean = false
   @Input() set data(value: any) {
     this._data = value
   }
@@ -19,4 +20,7 @@ export class DataViewerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  viewAverage() {
+    this.averageTrigger = !this.averageTrigger
+  }
 }
