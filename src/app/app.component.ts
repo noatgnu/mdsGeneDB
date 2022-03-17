@@ -34,8 +34,10 @@ export class AppComponent {
 
   removeEntry(event: string) {
     const ind = this.dataService.select.indexOf(event)
+    console.log(this.dataService.select)
     this.dataService.select.splice(ind, 1)
     this.dataService.selected.splice(ind, 1)
+    console.log(this.dataService.select)
   }
 
   selectMutants() {

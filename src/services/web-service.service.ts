@@ -20,6 +20,7 @@ export class WebServiceService {
       if (data) {
         this.data = fromCSV(<string>data)
         this.dataService.selected = this.data.where(row => row["Mutation"] === "p.Ala211Val").bake().toArray()
+        this.dataService.select = ["p.Ala211Val"]
         this.mutations = this.data.getSeries("Mutation").bake().toArray()
         this.invitro = this.data.getSeries("Interpretation (in vitro)").bake().distinct().toArray()
 
